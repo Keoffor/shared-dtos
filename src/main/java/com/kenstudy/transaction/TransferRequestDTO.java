@@ -17,7 +17,8 @@ public class TransferRequestDTO {
     }
 
     public TransferRequestDTO(Integer senderAcctId, Integer senderId, Integer recipientAcctId,
-                              Integer recipientId, String description, String status, Double amount, Integer transactId) {
+                              Integer recipientId, String description, String status, Double amount,
+                              Integer transactId) {
         this.senderAcctId = senderAcctId;
         this.senderId = senderId;
         this.recipientAcctId = recipientAcctId;
@@ -82,8 +83,6 @@ public class TransferRequestDTO {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-
-
 
     public Integer getTransactId() {
         return transactId;

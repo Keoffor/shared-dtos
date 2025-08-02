@@ -12,15 +12,18 @@ public class CustomerEvent implements Event{
     private UUID eventId = UUID.randomUUID();
     private TransferRequestDTO transRequestDTO;
     private CustomerStatus status;
+    private boolean isEventClosed;
     private String ErrorMessage;
 
     public CustomerEvent() {
     }
 
-    public CustomerEvent(TransferRequestDTO transRequestDTO, CustomerStatus status, String errorMessage) {
+    public CustomerEvent(TransferRequestDTO transRequestDTO, CustomerStatus status, String errorMessage,
+                         boolean isEventClosed) {
         this.transRequestDTO = transRequestDTO;
         this.status = status;
         ErrorMessage = errorMessage;
+        this.isEventClosed = isEventClosed;
     }
 
     @Override
@@ -55,5 +58,13 @@ public class CustomerEvent implements Event{
 
     public void setErrorMessage(String errorMessage) {
         ErrorMessage = errorMessage;
+    }
+
+    public boolean isEventClosed() {
+        return isEventClosed;
+    }
+
+    public void setEventClosed(boolean eventClosed) {
+        isEventClosed = eventClosed;
     }
 }

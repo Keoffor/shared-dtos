@@ -14,14 +14,17 @@ public class AccountEvent implements Event{
     private PaymentRequestDTO paymentRequestDTO;
     private String errorMessage;
     private AccountStatus accountStatus;
+    private boolean isEventClosed;
 
     public AccountEvent() {
     }
 
-    public AccountEvent(PaymentRequestDTO paymentRequestDTO, String errorMessage, AccountStatus accountStatus) {
+    public AccountEvent(PaymentRequestDTO paymentRequestDTO, String errorMessage, AccountStatus accountStatus,
+                        boolean isEventClosed) {
         this.paymentRequestDTO = paymentRequestDTO;
         this.errorMessage = errorMessage;
         this.accountStatus = accountStatus;
+        this.isEventClosed = isEventClosed;
     }
 
     @Override
@@ -56,5 +59,13 @@ public class AccountEvent implements Event{
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public boolean isEventClosed() {
+        return isEventClosed;
+    }
+
+    public void setEventClosed(boolean eventClosed) {
+        isEventClosed = eventClosed;
     }
 }
