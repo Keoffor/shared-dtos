@@ -13,8 +13,8 @@ public class CancelUtility {
         log.info("Cancelling event due to: "+ reason);
         event.setRequestDTO(dto);
         event.setErrorMessage(reason);
-        event.setTStatus(failure);
-        event.setIsEventClosed(true);
+        event.setStatus(failure);
+        event.setEventClosed(true);
         return event;
     }
 }

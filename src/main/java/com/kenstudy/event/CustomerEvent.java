@@ -1,6 +1,5 @@
 package com.kenstudy.event;
 
-import com.kenstudy.customer.CustomerRequestDTO;
 import com.kenstudy.event.status.CustomerStatus;
 import com.kenstudy.transaction.TransferRequestDTO;
 
@@ -13,17 +12,19 @@ public class CustomerEvent implements Event, CancelableEvent<TransferRequestDTO,
     private TransferRequestDTO transRequestDTO;
     private CustomerStatus status;
     private boolean isEventClosed;
-    private String ErrorMessage;
+    private boolean error;
+    private String errorMessage;
 
     public CustomerEvent() {
     }
 
-    public CustomerEvent(TransferRequestDTO transRequestDTO, CustomerStatus status, String errorMessage,
+    public CustomerEvent(TransferRequestDTO transRequestDTO, boolean error, CustomerStatus status, String errorMessage,
                          boolean isEventClosed) {
         this.transRequestDTO = transRequestDTO;
         this.status = status;
-        ErrorMessage = errorMessage;
+        this.errorMessage = errorMessage;
         this.isEventClosed = isEventClosed;
+        this.error = error;
     }
 
     @Override
@@ -44,44 +45,55 @@ public class CustomerEvent implements Event, CancelableEvent<TransferRequestDTO,
 
     @Override
     public void setErrorMessage(String message) {
-     this.ErrorMessage = message;
+     this.errorMessage = message;
     }
 
     @Override
-    public void setTStatus(CustomerStatus status) {
+    public void setError(boolean isError) {
+        this.error = isError;
+    }
+
+    @Override
+    public void setStatus(CustomerStatus status) {
      this.status = status;
     }
 
     @Override
-    public void setIsEventClosed(boolean isClosed) {
+    public void setEventClosed(boolean isClosed) {
 
     }
+
 
     public TransferRequestDTO getTransRequestDTO() {
         return transRequestDTO;
-    }
-
-    public void setTransRequestDTO(TransferRequestDTO transRequestDTO) {
-        this.transRequestDTO = transRequestDTO;
     }
 
     public CustomerStatus getStatus() {
         return status;
     }
 
-    public void setStatus(CustomerStatus status) {
-        this.status = status;
-    }
-
     public boolean isEventClosed() {
         return isEventClosed;
     }
 
-    public void setEventClosed(boolean eventClosed) {
-        isEventClosed = eventClosed;
+    public boolean isError() {
+        return error;
     }
 
     public String getErrorMessage() {
-        return ErrorMessage;
+        return errorMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerEvent{" +
+                "eventDate=" + eventDate +
+                ", eventId=" + eventId +
+                ", transRequestDTO=" + transRequestDTO +
+                ", status=" + status +
+                ", isEventClosed=" + isEventClosed +
+                ", error=" + error +
+                ", errorMessage='" + errorMessage + '\'' +
+                '}';
     }
 }

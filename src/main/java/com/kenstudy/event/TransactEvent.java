@@ -12,17 +12,20 @@ public class TransactEvent implements Event, CancelableEvent<TransferRequestDTO,
     private TransferRequestDTO transRequestDTO;
     private String errorMessage;
     private TransStatus transStatus;
+    private boolean error;
     private boolean isEventClosed;
+    private UUID customerEventId;
 
     public TransactEvent() {
     }
 
-    public TransactEvent(TransferRequestDTO transRequestDTO, TransStatus transStatus, String errorMessage,
+    public TransactEvent(TransferRequestDTO transRequestDTO, boolean error, TransStatus transStatus, String errorMessage,
                         boolean isEventClosed) {
         this.transRequestDTO = transRequestDTO;
         this.errorMessage = errorMessage;
         this.transStatus = transStatus;
         this.isEventClosed= isEventClosed;
+        this.error = error;
     }
 
 
@@ -33,16 +36,21 @@ public class TransactEvent implements Event, CancelableEvent<TransferRequestDTO,
 
     @Override
     public void setErrorMessage(String message) {
-
+       this.errorMessage = message;
     }
 
     @Override
-    public void setTStatus(TransStatus status) {
+    public void setError(boolean isError) {
+       this.error = isError;
+    }
+
+    @Override
+    public void setStatus(TransStatus status) {
      this.transStatus = status;
     }
 
     @Override
-    public void setIsEventClosed(boolean isClosed) {
+    public void setEventClosed(boolean isClosed) {
      this.isEventClosed =isClosed;
     }
 
@@ -56,12 +64,9 @@ public class TransactEvent implements Event, CancelableEvent<TransferRequestDTO,
         return eventId;
     }
 
+
     public TransferRequestDTO getTransRequestDTO() {
         return transRequestDTO;
-    }
-
-    public void setTransRequestDTO(TransferRequestDTO transRequestDTO) {
-        this.transRequestDTO = transRequestDTO;
     }
 
     public String getErrorMessage() {
@@ -72,15 +77,33 @@ public class TransactEvent implements Event, CancelableEvent<TransferRequestDTO,
         return transStatus;
     }
 
-    public void setTransStatus(TransStatus transStatus) {
-        this.transStatus = transStatus;
+    public boolean isError() {
+        return error;
     }
 
     public boolean isEventClosed() {
         return isEventClosed;
     }
 
-    public void setEventClosed(boolean eventClosed) {
-        isEventClosed = eventClosed;
+    public UUID getCustomerEventId() {
+        return customerEventId;
+    }
+
+    public void setCustomerEventId(UUID customerEventId) {
+        this.customerEventId = customerEventId;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactEvent{" +
+                "eventDate=" + eventDate +
+                ", eventId=" + eventId +
+                ", transRequestDTO=" + transRequestDTO +
+                ", errorMessage='" + errorMessage + '\'' +
+                ", transStatus=" + transStatus +
+                ", error=" + error +
+                ", isEventClosed=" + isEventClosed +
+                ", customerEventId=" + customerEventId +
+                '}';
     }
 }

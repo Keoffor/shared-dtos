@@ -1,5 +1,7 @@
 package com.kenstudy.payment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PaymentRequestDTO {
     private Integer accountId;
     private Integer recipientAcctId;
@@ -8,13 +10,15 @@ public class PaymentRequestDTO {
     private String transactStatus;
     private Double amount;
     private Integer customerId;
+    private String description;
 
 
     public PaymentRequestDTO() {
     }
 
     public PaymentRequestDTO(Integer accountId, Integer recipientAcctId, Integer recipientId,
-                             Integer transactionId, String transactStatus, Double amount, Integer customerId) {
+                             Integer transactionId, String transactStatus, Double amount, Integer customerId,
+                             String description) {
         this.accountId = accountId;
         this.recipientAcctId = recipientAcctId;
         this.recipientId = recipientId;
@@ -22,6 +26,7 @@ public class PaymentRequestDTO {
         this.transactStatus = transactStatus;
         this.amount = amount;
         this.customerId = customerId;
+        this.description = description;
     }
 
     public Integer getAccountId() {
@@ -80,6 +85,14 @@ public class PaymentRequestDTO {
         this.customerId = customerId;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "PaymentRequestDTO{" +
@@ -90,6 +103,7 @@ public class PaymentRequestDTO {
                 ", transactStatus='" + transactStatus + '\'' +
                 ", amount=" + amount +
                 ", customerId=" + customerId +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

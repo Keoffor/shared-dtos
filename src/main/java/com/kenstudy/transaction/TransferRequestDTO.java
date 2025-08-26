@@ -10,7 +10,6 @@ public class TransferRequestDTO {
     private String description;
     private String status;
     private Double amount;
-    @JsonIgnore
     private Integer transactId;
 
     public TransferRequestDTO() {
@@ -90,5 +89,19 @@ public class TransferRequestDTO {
 
     public void setTransactId(Integer transactId) {
         this.transactId = transactId;
+    }
+
+    @Override
+    public String toString() {
+        return "TransferRequestDTO{" +
+                "senderAcctId=" + senderAcctId +
+                ", senderId=" + senderId +
+                ", recipientAcctId=" + recipientAcctId +
+                ", recipientId=" + recipientId +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", amount=" + amount +
+                ", transactId=" + transactId +
+                '}';
     }
 }
